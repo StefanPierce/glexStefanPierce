@@ -4,6 +4,8 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <memory>
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
 
 #include <boost/program_options.hpp>
 
@@ -11,6 +13,8 @@
 
 #include "common.h"
 #include "GameWorld.h"
+
+const Uint8* keystates;
 
 /*
  * SDL timers run in separate threads.  In the timer thread
@@ -34,13 +38,35 @@ struct SDLWindowDeleter {
   }
 };
 
+void Update(const std::shared_ptr<GameWorld> game_world){
+
+ int x, y;
+ SDL_GetRelativeMouseState(&x, &y); 
+ game_world->setCamera(x/1000.0, y/1000.0);
+
+ if(keystates[SDL_SCANCODE_W]){
+   game_world->moveF();
+ }
+ if(keystates[SDL_SCANCODE_S]){
+   game_world->moveB();
+ }
+ if(keystates[SDL_SCANCODE_A]){
+   game_world->moveL();
+ }
+ if(keystates[SDL_SCANCODE_D]){
+   game_world->moveR();
+ }
+}	
+
 void Draw(const std::shared_ptr<SDL_Window> window, const std::shared_ptr<GameWorld> game_world) {
+
+  
   glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-
+  
   game_world->Draw();
-
-  // Don't forget to swap the buffers
+   
+// Don't forget to swap the buffers
   SDL_GL_SwapWindow(window.get());
 }
 
@@ -143,10 +169,15 @@ int main(int argc, char ** argv) {
   auto mode = ParseOptions(argc, argv);
   auto window = InitWorld();
   auto game_world = std::make_shared<GameWorld>(mode);
+  glEnable(GL_DEPTH_TEST);
+  //basically hide and lock mouse to center
+  SDL_SetRelativeMouseMode(SDL_TRUE);
+
   if(!window) {
     SDL_Quit();
   }
 
+  keystates = SDL_GetKeyboardState(NULL);
   // Call the function "tick" every delay milliseconds
   SDL_AddTimer(delay, tick, NULL);
 
@@ -158,9 +189,9 @@ int main(int argc, char ** argv) {
       SDL_Quit();
       break;
     case SDL_USEREVENT:
+      Update(game_world);
       Draw(window, game_world);
-
-      break;
+	break;
     default:
       break;
     }

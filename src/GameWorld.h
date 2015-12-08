@@ -7,6 +7,10 @@
 
 #include "common.h"
 #include "GameAssetManager.h"
+
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
+
 #include "CubeAsset.h"
 
 /**
@@ -22,6 +26,11 @@ class GameWorld {
    * is preferable (in this case) to having some kind of global state.
    */
   GameWorld(ApplicationMode);
+  void moveF();
+  void moveB();
+  void moveL();
+  void moveR();
+  void setCamera(GLfloat, GLfloat);
 
   /**
    * Calling Draw() will draw the entire world.
@@ -29,5 +38,11 @@ class GameWorld {
   void Draw();
  private:
   std::shared_ptr<GameAssetManager> asset_manager;
+  GLfloat speed = 0.1;
+  GLfloat cameraX = 1.0;
+  GLfloat cameraY = 1.0;
+  glm::vec3 position = glm::vec3(1,1,1);
+  glm::vec3 mdirection;
+  glm::vec3 vright;
 };
 #endif // GAMEWORLD_H

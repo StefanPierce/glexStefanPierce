@@ -11,13 +11,18 @@
 
 class CubeAsset : public GameAsset {
  public:
-  CubeAsset();
+  CubeAsset(GLfloat x, GLfloat y, GLfloat z);
   ~CubeAsset();
   virtual void Draw(GLuint);
 
  private:
   GLuint element_buffer_length;
   GLuint vertex_buffer_token, element_buffer_token;
+  GLuint colorbuffer;
+  float angle = 0;
+  GLfloat tX = 0;
+  GLfloat tY = 0;
+  GLfloat tZ = 0;
 };
 
 #endif // CUBEASSET_H

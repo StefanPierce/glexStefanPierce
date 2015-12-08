@@ -7,7 +7,7 @@
 GameAssetManager::GameAssetManager(ApplicationMode mode) {
   std::string vertex_shader("shaders/translate.vs");
   std::string fragment_shader("shaders/fragment.fs");
-
+  
   switch(mode) {
   case ROTATE:
     vertex_shader = "shaders/rotate.vs";
@@ -66,9 +66,13 @@ void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
  * Draws each GameAsset in the scene graph.
  */
 void GameAssetManager::Draw() {
+
+
   for(auto ga: draw_list) {
     ga->Draw(program_token);
   }
+  
+
 }
 
 /**
