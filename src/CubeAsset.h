@@ -24,6 +24,9 @@ class CubeAsset : public GameAsset {
   GLfloat tX = 0;
   GLfloat tY = 0;
   GLfloat tZ = 0;
+
+  glm::vec3 min;
+  glm::vec3 max;
 };
 
 #endif // CUBEASSET_H
