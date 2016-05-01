@@ -68,6 +68,10 @@ CubeAsset::CubeAsset(GLfloat x, GLfloat y, GLfloat z) {
 CubeAsset::~CubeAsset() {
 }
 
+bool CubeAsset::collision(GameAsset &a){
+  return true;
+}
+
 #ifdef DEBUG
 #define checkGLError() checkError(__FILE__, __LINE__)
 #else
@@ -111,9 +115,14 @@ void CubeAsset::Draw(GLuint program_token) {
 
   glUseProgram(program_token);
   checkGLError();
+  
+  //used for rotating cube on Y axis
   glm::vec3 axis_y(tX,tY,tZ);
-  angle += 1.0f;
 
+  
+  //angle += 1.0f;
+  
+  
   glm::mat4 anim = glm::rotate(
 	glm::mat4(1.0f),
 	glm::radians(angle),

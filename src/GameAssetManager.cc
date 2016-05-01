@@ -67,8 +67,11 @@ void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
  */
 void GameAssetManager::Draw() {
 
-
+  //just checking collision passes back properly before tackling the maths!
   for(auto ga: draw_list) {
+    if(ga->collision(*ga)){
+	std::cout<<"Collides"<<std::endl;
+    }
     ga->Draw(program_token);
   }
   

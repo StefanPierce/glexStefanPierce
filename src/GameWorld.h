@@ -11,6 +11,7 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
+#include "Player.h"
 #include "CubeAsset.h"
 
 /**
@@ -38,11 +39,7 @@ class GameWorld {
   void Draw();
  private:
   std::shared_ptr<GameAssetManager> asset_manager;
-  GLfloat speed = 0.1;
-  GLfloat cameraX = 1.0;
-  GLfloat cameraY = 1.0;
-  glm::vec3 position = glm::vec3(1,1,1);
-  glm::vec3 mdirection;
-  glm::vec3 vright;
+  std::shared_ptr<Player> player;
+  
 };
 #endif // GAMEWORLD_H
