@@ -129,16 +129,11 @@ void CubeAsset::Draw(GLuint program_token) {
  // angle += 0.01f;
   
   
-  /*glm::mat4 anim = glm::rotate(
+  glm::mat4 anim = glm::rotate(
 	glm::mat4(1.0f),
 	glm::radians(angle),
         axis_y
 
-  );*/
-
-  
-  glm::mat4 anim = glm::translate(
-	glm::mat4(), glm::vec3(tX, tY + angle, tZ)
   );
 
 
