@@ -3,7 +3,7 @@
 GameWorld::GameWorld (ApplicationMode mode) {
   asset_manager = std::make_shared<GameAssetManager>(mode);
 
-  player = std::make_shared<Player>();
+  player = std::make_shared<Player>(asset_manager->return_token());
 
   //generate 20x20 grid
   for(int i = 0; i < 20; i++){

@@ -23,6 +23,10 @@ GameAssetManager::GameAssetManager(ApplicationMode mode) {
   program_token = CreateGLProgram(vertex_shader, fragment_shader);
 }
 
+GLuint GameAssetManager::return_token(){
+	return program_token;
+}
+
 /**
  * Deletes a GameAssetManager, in particular it will clean up any modifications
  * to the OpenGL state.

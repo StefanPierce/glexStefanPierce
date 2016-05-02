@@ -1,6 +1,10 @@
 #include "GameWorld.h"
 
-Player::Player(){
+Player::Player(GLuint program_token){
+
+  mod_loc = glGetUniformLocation(program_token, "Model");
+  pro_loc = glGetUniformLocation(program_token, "Projection");
+  view_loc = glGetUniformLocation(program_token, "View");
 
 }
 
@@ -82,7 +86,7 @@ void Player::Draw() {
 
   glm::mat4 Model(1.0f);
   //send Projection, view and model to shader
-  glUniformMatrix4fv(0, 1, GL_FALSE, &Projection[0][0]);
-  glUniformMatrix4fv(1, 1, GL_FALSE, &View[0][0]);
-  glUniformMatrix4fv(2, 1, GL_FALSE, &Model[0][0]);
+  glUniformMatrix4fv(pro_loc, 1, GL_FALSE, &Projection[0][0]);
+  glUniformMatrix4fv(view_loc, 1, GL_FALSE, &View[0][0]);
+  glUniformMatrix4fv(mod_loc, 1, GL_FALSE, &Model[0][0]);
 }

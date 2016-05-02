@@ -17,7 +17,7 @@
  */
 class Player {
  public:
-  Player();	
+  Player(GLuint);	
   void Draw();
   void moveF();
   void moveB();
@@ -31,6 +31,9 @@ class Player {
   glm::vec3 position = glm::vec3(1,1,1);
   glm::vec3 mdirection;
   glm::vec3 vright;
+  GLuint mod_loc;
+  GLuint pro_loc;
+  GLuint view_loc;
 
 };
 
