@@ -13,7 +13,7 @@ GameWorld::GameWorld (ApplicationMode mode) {
   }
 
 	for(int i = 0; i < 10; i++){
-		addCube(0.0 + i, 0.0, 0.0 + 1);
+		addCube(5.0 + i, 0.0 + i, 0.0 + 1);
 	}
 }
 
@@ -33,21 +33,31 @@ bool GameWorld::checkPlayerCollisions(){
 //basic move functions
 void GameWorld::moveF(){
 player->moveF();
-checkPlayerCollisions();
+if(checkPlayerCollisions()){
+player->moveB();
+}
 }
 
 void GameWorld::moveB(){
 player->moveB();
+if(checkPlayerCollisions()){
+player->moveF();
+}
 }
 
 void GameWorld::moveL(){
 player->moveL();
+if(checkPlayerCollisions()){
+player->moveR();
+}
 }
 
 void GameWorld::moveR(){
  player->moveR();
+if(checkPlayerCollisions()){
+player->moveL();
 }
-
+}
 
 
 void GameWorld::setCamera(GLfloat x, GLfloat y){
