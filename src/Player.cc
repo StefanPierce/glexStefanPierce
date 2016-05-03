@@ -8,25 +8,45 @@ Player::Player(GLuint program_token){
 
 }
 
+bool Player::collision(GameAsset &a){
+
+  
+  return false;
+}
 
 //basic move functions
 void Player::moveF(){
   position+=mdirection*speed;
+  updateMinMax();
 }
 
 void Player::moveB(){
   position-=mdirection*speed;
+  updateMinMax();
 }
 
 void Player::moveL(){
  position-=vright*speed;
+ updateMinMax();
 }
 
 void Player::moveR(){
  position+=vright*speed;
+ updateMinMax();
 }
 
+void Player::updateMinMax(){
+   min = position - glm::vec3(0.5,height,0.5);
+   max = position + glm::vec3(0.5,0.5,0.5);
+}
 
+glm::vec3 Player::getMin(){
+  return min;
+}
+
+glm::vec3 Player::getMax(){
+  return max;
+}
 
 void Player::setCamera(GLfloat x, GLfloat y){
 cameraX-= x;

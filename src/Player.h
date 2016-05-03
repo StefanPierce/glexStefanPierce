@@ -9,6 +9,8 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
+#include "GameAsset.h"
+
 #include "Player.h"
 
 /**
@@ -24,10 +26,19 @@ class Player {
   void moveL();
   void moveR();
   void setCamera(GLfloat, GLfloat);
+  bool collision(GameAsset &a);
+  glm::vec3 getMin();
+  glm::vec3 getMax();
+  
  private:
   GLfloat speed = 0.1;
+  void updateMinMax();
   GLfloat cameraX = 1.0;
   GLfloat cameraY = 1.0;
+  GLfloat height = 1.0;
+  GLfloat width = 1.0;
+  glm::vec3 min;
+  glm::vec3 max;
   glm::vec3 position = glm::vec3(1,1,1);
   glm::vec3 mdirection;
   glm::vec3 vright;

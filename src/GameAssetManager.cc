@@ -23,6 +23,16 @@ GameAssetManager::GameAssetManager(ApplicationMode mode) {
   program_token = CreateGLProgram(vertex_shader, fragment_shader);
 }
 
+bool GameAssetManager::checkPlayerCollisions(glm::vec3 pmin, glm::vec3 pmax){
+	for(auto ga: draw_list) {
+          if(ga->collision(pmin, pmax)){
+		return true;
+	  }
+        }
+
+	return false;
+}
+
 GLuint GameAssetManager::return_token(){
 	return program_token;
 }
@@ -73,9 +83,6 @@ void GameAssetManager::Draw() {
 
   for(auto ga: draw_list) {
   //just checking collision passes back properly before tackling the maths!
-  if(ga->collision(*ga)){
-	std::cout<<"Collides"<<std::endl;
-    }
     ga->Draw(program_token);
   }
   

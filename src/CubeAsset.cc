@@ -64,17 +64,10 @@ CubeAsset::CubeAsset(GLfloat x, GLfloat y, GLfloat z) {
  glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
  glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 24, color_buffer, GL_STATIC_DRAW);
 
- min = glm::vec3(x - 0.5, y - 0.5, z - 0.5);
- max = glm::vec3(x + 0.7, y + 0.5, z + 0.5);
+ genMinMax(tX, tY, tZ);
 }
 
 CubeAsset::~CubeAsset() {
-}
-
-bool CubeAsset::collision(GameAsset &a){
-  
-   
-   return false;
 }
 
 #ifdef DEBUG
@@ -91,6 +84,8 @@ void checkError(std::string file, int line) {
     exit(-1);
   }
 }
+
+
 
 void CubeAsset::Draw(GLuint program_token) {
   if(!glIsProgram(program_token)) {

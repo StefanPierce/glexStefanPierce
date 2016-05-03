@@ -28,6 +28,7 @@ class GameAssetManager {
   void AddAsset(std::shared_ptr<GameAsset>);
   void Draw();
   GLuint return_token();
+  bool checkPlayerCollisions(glm::vec3, glm::vec3);
 
  private:
   GLuint CreateGLProgram(std::string &, std::string &);

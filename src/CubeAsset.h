@@ -14,7 +14,6 @@ class CubeAsset : public GameAsset {
   CubeAsset(GLfloat x, GLfloat y, GLfloat z);
   ~CubeAsset();
   virtual void Draw(GLuint);
-  virtual bool collision(GameAsset &a);
 
  private:
   GLuint element_buffer_length;
@@ -25,8 +24,9 @@ class CubeAsset : public GameAsset {
   GLfloat tY = 0;
   GLfloat tZ = 0;
 
-  glm::vec3 min;
-  glm::vec3 max;
+
+
+
 };
 
 #endif // CUBEASSET_H
