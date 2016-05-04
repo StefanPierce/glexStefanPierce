@@ -3,7 +3,7 @@
 GameWorld::GameWorld (ApplicationMode mode) {
   asset_manager = std::make_shared<GameAssetManager>(mode);
 
-  player = std::make_shared<Player>(asset_manager->return_token());
+  
 
   //generate 20x20 grid
   for(int i = 0; i < 25; i++){
@@ -15,10 +15,17 @@ GameWorld::GameWorld (ApplicationMode mode) {
 	for(int i = 0; i < 10; i++){
 		addCube(5.0 + i, 0.0 + i, 0.0 + 1);
 	}
+
+  player = std::make_shared<Player>(asset_manager->return_token());
 }
 
 void GameWorld::addCube(GLfloat x, GLfloat y, GLfloat z){
-	asset_manager->AddAsset(std::make_shared<CubeAsset>(0.0 + x, 0.0 + y, 0.0+z));
+       
+        if(player!= nullptr){
+	  asset_manager->AddAsset(std::make_shared<CubeAsset>(0.0 + x, 0.0 + y, 0.0+z), player->getMin(), player->getMax());
+	}else{
+	  asset_manager->AddAsset(std::make_shared<CubeAsset>(0.0 + x, 0.0 + y, 0.0+z));
+	}
 }
 
 bool GameWorld::checkPlayerCollisions(){
@@ -59,9 +66,15 @@ player->moveL();
 }
 }
 
+void GameWorld::addBlock(){
+ glm::vec3 temp = player->getPosDir();
+ addCube((int)temp.x, (int)temp.y, (int)temp.z);
+ 
+ 
+}
 
 void GameWorld::setCamera(GLfloat x, GLfloat y){
-player->setCamera(x,y);
+  player->setCamera(x,y);
 
 }
 

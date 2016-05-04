@@ -29,7 +29,7 @@ class Player {
   bool collision(GameAsset &a);
   glm::vec3 getMin();
   glm::vec3 getMax();
-  
+  glm::vec3 getPosDir();
  private:
   GLfloat speed = 0.1;
   void updateMinMax();
@@ -41,6 +41,7 @@ class Player {
   glm::vec3 max;
   glm::vec3 position = glm::vec3(1,1,1);
   glm::vec3 mdirection;
+  glm::vec3 direction;
   glm::vec3 vright;
   GLuint mod_loc;
   GLuint pro_loc;

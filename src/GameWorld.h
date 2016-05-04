@@ -32,6 +32,7 @@ class GameWorld {
   void moveL();
   void moveR();
   void setCamera(GLfloat, GLfloat);
+  void addBlock();
 
   /**
    * Calling Draw() will draw the entire world.

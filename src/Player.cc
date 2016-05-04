@@ -48,6 +48,10 @@ glm::vec3 Player::getMax(){
   return max;
 }
 
+glm::vec3 Player::getPosDir(){
+ return (position + direction * glm::vec3(3,3,3));
+}
+
 void Player::setCamera(GLfloat x, GLfloat y){
 cameraX-= x;
 cameraY-= y;
@@ -67,7 +71,7 @@ void Player::Draw() {
    
    //would use this direction in movement if we wanted free cam, but we dont so i use
    //it to work out the direction of camera
-   glm::vec3 direction(
+   direction = glm::vec3(
       cos(cameraY) * sin(cameraX),
       sin(cameraY),
       cos(cameraY) * cos(cameraX)
@@ -75,13 +79,11 @@ void Player::Draw() {
 
    //same as above but as the second value is 0, if we add or minus this from
    //position, the camera would never move up or down
-   glm::vec3 mdirection1(
+    mdirection = glm::vec3(
       cos(cameraY) * sin(cameraX),
       0,
       cos(cameraX) * cos(cameraY)
    );
-   //store into the global direction(possibly a better way to do this)
-   mdirection = mdirection1;
 
     //works out movement for moving right (and in turn left)
     vright = glm::vec3(

@@ -111,7 +111,8 @@ void CubeAsset::Draw(GLuint program_token) {
   }
 
   GLuint position_attrib = glGetAttribLocation(program_token, "position");
-  GLuint color_attrib = glGetAttribLocation(program_token, "color");	
+  GLuint color_attrib = glGetAttribLocation(program_token, "color");
+  GLuint anim_loc = glGetUniformLocation(program_token, "anim");
   checkGLError();
 
   glUseProgram(program_token);
@@ -121,7 +122,7 @@ void CubeAsset::Draw(GLuint program_token) {
   glm::vec3 axis_y(tX,tY,tZ);
 
   
- // angle += 0.01f;
+ // angle += 0.1f;
   
   
   glm::mat4 anim = glm::rotate(
@@ -132,7 +133,7 @@ void CubeAsset::Draw(GLuint program_token) {
   );
 
 
-  glUniformMatrix4fv(3, 1, GL_FALSE, &anim[0][0]);
+  glUniformMatrix4fv(anim_loc, 1, GL_FALSE, &anim[0][0]);
 
  
   

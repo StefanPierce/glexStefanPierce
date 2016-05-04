@@ -73,7 +73,14 @@ void GameAssetManager::operator=(GameAssetManager const& the_manager) {
  * Adds a GameAsset to the scene graph.
  */
 void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
+  
   draw_list.push_back(the_asset);
+}
+
+void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset, glm::vec3 min, glm::vec3 max) {
+  if(the_asset->collision(min, max)==false){
+  draw_list.push_back(the_asset);
+  }
 }
 
 /**
