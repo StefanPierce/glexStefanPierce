@@ -74,8 +74,7 @@ void GameAssetManager::operator=(GameAssetManager const& the_manager) {
  */
 void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
   for(auto ga: draw_list){
-     if (ga->collision(*	the_asset)){
-     std::cout<<"Cant place cube there" << std::endl;
+     if (ga->collision(*the_asset)){
      return;
    }
   }
@@ -105,13 +104,11 @@ void GameAssetManager::removeBlock(glm::vec3 posdir){
  * Draws each GameAsset in the scene graph.
  */
 void GameAssetManager::Draw() {
-int i = 0;
+
   for(auto ga: draw_list) {
   //just checking collision passes back properly before tackling the maths!
     ga->Draw(program_token);
-    i++;
   }
-  std::cout<< i << " : Cubes" << std::endl;
 
 }
 

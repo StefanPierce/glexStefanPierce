@@ -6,6 +6,7 @@ Player::Player(GLuint program_token){
   pro_loc = glGetUniformLocation(program_token, "Projection");
   view_loc = glGetUniformLocation(program_token, "View");
 
+
 }
 
 bool Player::collision(GameAsset &a){
@@ -106,6 +107,10 @@ void Player::Draw() {
 				vup			//
         		      );
 
+
+  glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+
+  glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
   glm::mat4 Model(1.0f);
   //send Projection, view and model to shader
   glUniformMatrix4fv(pro_loc, 1, GL_FALSE, &Projection[0][0]);

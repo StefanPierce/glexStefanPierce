@@ -85,7 +85,9 @@ void checkError(std::string file, int line) {
   }
 }
 
-
+void CubeAsset::ChangePos(GLfloat x, GLfloat y, GLfloat z){
+ 	anim = glm::translate(glm::vec3(tX+x,tY+y,tZ+z));
+}
 
 void CubeAsset::Draw(GLuint program_token) {
   if(!glIsProgram(program_token)) {
@@ -125,12 +127,12 @@ void CubeAsset::Draw(GLuint program_token) {
  // angle += 0.1f;
   
   
-  glm::mat4 anim = glm::rotate(
+  /*anim = glm::rotate(
 	glm::mat4(1.0f),
 	glm::radians(angle),
         axis_y
 
-  );
+  );*/
 
 
   glUniformMatrix4fv(anim_loc, 1, GL_FALSE, &anim[0][0]);

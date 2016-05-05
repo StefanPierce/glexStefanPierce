@@ -14,7 +14,7 @@ class CubeAsset : public GameAsset {
   CubeAsset(GLfloat x, GLfloat y, GLfloat z);
   ~CubeAsset();
   virtual void Draw(GLuint);
-
+  void ChangePos(GLfloat x, GLfloat y, GLfloat z);
  private:
   GLuint element_buffer_length;
   GLuint vertex_buffer_token, element_buffer_token;
@@ -23,6 +23,7 @@ class CubeAsset : public GameAsset {
   GLfloat tX = 0;
   GLfloat tY = 0;
   GLfloat tZ = 0;
+  glm::mat4 anim;
 
 
 

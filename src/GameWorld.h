@@ -42,6 +42,7 @@ class GameWorld {
  private:
   std::shared_ptr<GameAssetManager> asset_manager;
   std::shared_ptr<Player> player;
+  std::shared_ptr<CubeAsset> cube;
   bool checkPlayerCollisions();
   int count;
   int asset_position[25][25][25];

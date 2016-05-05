@@ -31,6 +31,7 @@ class Player {
   glm::vec3 getMax();
   glm::vec3 getPosDir();
  private:
+
   GLfloat speed = 0.1;
   void updateMinMax();
   GLfloat cameraX = 1.0;

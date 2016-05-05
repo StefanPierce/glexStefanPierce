@@ -177,6 +177,8 @@ int main(int argc, char ** argv) {
   auto mode = ParseOptions(argc, argv);
   auto window = InitWorld();
   auto game_world = std::make_shared<GameWorld>(mode);
+
+
   glEnable(GL_DEPTH_TEST);
   //basically hide and lock mouse to center
   SDL_SetRelativeMouseMode(SDL_TRUE);

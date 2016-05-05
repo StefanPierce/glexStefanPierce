@@ -17,6 +17,7 @@ GameWorld::GameWorld (ApplicationMode mode) {
 	}
 
   player = std::make_shared<Player>(asset_manager->return_token());
+  cube = std::make_shared<CubeAsset>(0,0,0);
 }
 
 void GameWorld::addCube(GLfloat x, GLfloat y, GLfloat z){
@@ -68,22 +69,29 @@ player->moveL();
 
 void GameWorld::addBlock(){
  glm::vec3 temp = player->getPosDir();
- addCube((int)temp.x, (int)temp.y, (int)temp.z);
+ addCube((int)temp.x, (int)temp.y, (int)temp.z );
  
  
 }
 
 void GameWorld::removeBlock(){
- asset_manager->removeBlock(player->getPosDir());
+  glm::vec3 temp = player->getPosDir();
+ asset_manager->removeBlock(glm::vec3((int)temp.x, (int)temp.y, (int)temp.z));
 
 }
 
 void GameWorld::setCamera(GLfloat x, GLfloat y){
   player->setCamera(x,y);
+  glm::vec3 temp = player->getPosDir();
+  cube->ChangePos((int)temp.x, (int)temp.y, (int)temp.z);
 
 }
 
 void GameWorld::Draw() {
   player->Draw();
+  glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+  cube->Draw(asset_manager->return_token());
+  glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
   asset_manager->Draw();
+  //removeBlock();
 }
