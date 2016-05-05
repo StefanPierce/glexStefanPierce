@@ -36,8 +36,8 @@ void Player::moveR(){
 }
 
 void Player::updateMinMax(){
-   min = position - glm::vec3(0.5,height,0.5);
-   max = position + glm::vec3(0.5,0.5,0.5);
+   min = position - glm::vec3(0.3,height,0.3);
+   max = position + glm::vec3(0.3,0.5,0.3);
 }
 
 glm::vec3 Player::getMin(){

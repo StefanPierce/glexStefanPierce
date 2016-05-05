@@ -12,11 +12,15 @@ class GameAsset {
   GameAsset();
   virtual void Draw(GLuint) = 0;
   bool collision(glm::vec3 min1, glm::vec3 max1);
+  bool collision(GameAsset &a);
   void genMinMax(GLfloat, GLfloat, GLfloat);
+  glm::vec3 getAssetPos();
+  glm::vec3 getMin();
+  glm::vec3 getMax();
   private:
   glm::vec3 max;
   glm::vec3 min;
-
+  glm::vec3 pos;
 };
 
 #endif

@@ -73,6 +73,11 @@ void GameWorld::addBlock(){
  
 }
 
+void GameWorld::removeBlock(){
+ asset_manager->removeBlock(player->getPosDir());
+
+}
+
 void GameWorld::setCamera(GLfloat x, GLfloat y){
   player->setCamera(x,y);
 

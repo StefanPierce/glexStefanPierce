@@ -15,7 +15,7 @@
 #include "GameWorld.h"
 
 const Uint8* keystates;
-bool lmd = false;
+
 
 /*
  * SDL timers run in separate threads.  In the timer thread
@@ -58,14 +58,12 @@ void Update(const std::shared_ptr<GameWorld> game_world){
    game_world->moveR();
  }
 
- if(SDL_GetMouseState(NULL, NULL) && SDL_BUTTON(SDL_BUTTON_LEFT)){
-  if(lmd == false){
+ if(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)){ 
    game_world->addBlock();
-   lmd = true;
-  }
- }else{
-   lmd = false;
-  }
+}
+ if(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_RIGHT)){
+   game_world->removeBlock();
+}
 }	
 
 void Draw(const std::shared_ptr<SDL_Window> window, const std::shared_ptr<GameWorld> game_world) {
