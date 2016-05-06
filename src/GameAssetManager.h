@@ -12,6 +12,7 @@
 
 #include "common.h"
 #include "GameAsset.h"
+#include "CubeAsset.h"
 
 /**
  * GameAssetManager is a container for GameAssets.  It also provides utility
@@ -27,19 +28,26 @@ class GameAssetManager {
   void operator=(GameAssetManager const&); // assignment
   void AddAsset(std::shared_ptr<GameAsset>);
   void AddAsset(std::shared_ptr<GameAsset>, glm::vec3, glm::vec3);
-  void Draw();
+  void Draw(glm::vec3 pos);
   void removeBlock(glm::vec3);
   GLuint return_token();
   bool checkPlayerCollisions(glm::vec3, glm::vec3);
-
+  void GenCubes(int, int);
+  void addCube(int, int, glm::vec3);
+  void updateActiveChunk(int, int);
  private:
   GLuint CreateGLProgram(std::string &, std::string &);
   GLuint CreateGLESShader(GLenum, std::string &);
   // As this is private and we're writing to the GPU, we will use raw pointers.
   std::pair<GLchar *, GLint>  ReadShader(std::string &);
-
   // The internal scene graph is a simple list.
-  std::vector<std::shared_ptr<GameAsset>> draw_list;
+  std::vector<std::shared_ptr<GameAsset>> draw_list[3][3];
+  std::vector<std::shared_ptr<GameAsset>> create_list;
+  int chunkPosx[3][3];
+  int chunkPosz[3][3];
+  int ACX = 1;
+  int ACZ = 1;
+  int chunkSize = 10;
   GLuint program_token;
 };
 

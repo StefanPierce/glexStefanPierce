@@ -17,6 +17,7 @@ class GameAsset {
   glm::vec3 getAssetPos();
   glm::vec3 getMin();
   glm::vec3 getMax();
+  bool closeToDraw(glm::vec3 pos1);
   private:
   glm::vec3 max;
   glm::vec3 min;

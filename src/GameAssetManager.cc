@@ -20,17 +20,96 @@ GameAssetManager::GameAssetManager(ApplicationMode mode) {
     break;
   };
 
+  for(int i = 0; i < 3; i++){
+      for(int ii = 0; ii < 3; ii++){
+	chunkPosx[i][ii] = i;
+        chunkPosz[i][ii] = ii;	
+	GenCubes(i, ii);
+      }
+   }
+
   program_token = CreateGLProgram(vertex_shader, fragment_shader);
 }
 
+void GameAssetManager::GenCubes(int x, int z){
+   draw_list[x][z].clear();
+   for(int i = 0; i < chunkSize; i ++){
+	for(int ii = 0; ii < chunkSize; ii++){
+		addCube(x, z, glm::vec3(i + 1, -1, ii + 1));
+	}
+   }
+
+}
+void GameAssetManager::addCube(int x, int z, glm::vec3 pos){
+  GLfloat xt = (chunkPosx[x][z]) * chunkSize + pos.x;
+  GLfloat zt = (chunkPosz[x][z]) * chunkSize + pos.z;
+  draw_list[x][z].push_back(std::make_shared<CubeAsset>(xt, pos.y, zt));
+
+}
+
 bool GameAssetManager::checkPlayerCollisions(glm::vec3 pmin, glm::vec3 pmax){
-	for(auto ga: draw_list) {
+	for(auto ga: draw_list[1][1]) {
           if(ga->collision(pmin, pmax)){
 		return true;
 	  }
         }
 
+	for(auto ga: create_list){
+		if(ga->collision(pmin, pmax)){
+		return true;
+	}
+	}
 	return false;
+}
+
+void GameAssetManager::updateActiveChunk(int x, int z){
+     if(ACX < (x / chunkSize)){
+	for (int i = 0; i < 3; i++){
+              chunkPosx[0][i] = chunkPosx[1][i];
+	      draw_list[0][i] = draw_list[1][i];
+	      chunkPosx[1][i] = chunkPosx[2][i];
+	      draw_list[1][i] = draw_list[2][i];
+	      chunkPosx[2][i] = chunkPosx[2][i] + 1;
+	      GenCubes(2, i);
+	}
+     }
+
+     if(ACX > (x / chunkSize)){
+	for (int i = 0; i < 3; i++){
+              chunkPosx[2][i] = chunkPosx[1][i];
+	      draw_list[2][i] = draw_list[1][i];
+	      chunkPosx[1][i] = chunkPosx[0][i];
+	      draw_list[1][i] = draw_list[0][i];
+	      chunkPosx[0][i] = chunkPosx[0][i] - 1;
+	      GenCubes(0, i);
+	}
+     }
+
+     if(ACZ < (z / chunkSize)){
+	for (int i = 0; i < 3; i++){
+              chunkPosz[i][0] = chunkPosz[i][1];
+	      draw_list[i][0] = draw_list[i][1];
+	      chunkPosz[i][1] = chunkPosz[i][2];
+	      draw_list[i][1] = draw_list[i][2];
+	      chunkPosz[i][2] = chunkPosz[i][2] + 1;
+	      GenCubes(i, 2);
+	}
+     }
+
+    if(ACZ > (z / chunkSize)){
+	for (int i = 0; i < 3; i++){
+              chunkPosz[i][2] = chunkPosz[i][1];
+	      draw_list[i][2] = draw_list[i][1];
+	      chunkPosz[i][1] = chunkPosz[i][0];
+	      draw_list[i][1] = draw_list[i][0];
+	      chunkPosz[i][0] = chunkPosz[i][0] - 1;
+	      GenCubes(i, 0);
+	}
+     }
+
+     ACX = (int)(x / chunkSize);
+     ACZ = (int)(z / chunkSize);
+	std::cout << ACX << " : " << ACZ << std::endl;
 }
 
 GLuint GameAssetManager::return_token(){
@@ -73,12 +152,12 @@ void GameAssetManager::operator=(GameAssetManager const& the_manager) {
  * Adds a GameAsset to the scene graph.
  */
 void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
-  for(auto ga: draw_list){
+  for(auto ga: create_list){
      if (ga->collision(*the_asset)){
      return;
    }
   }
-  draw_list.push_back(the_asset);
+  create_list.push_back(the_asset);
 }
 
 void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset, glm::vec3 min, glm::vec3 max) {
@@ -91,9 +170,9 @@ void GameAssetManager::removeBlock(glm::vec3 posdir){
 
   int i = 0;
 
-  for(auto ga: draw_list){
+  for(auto ga: create_list){
     if(ga->collision(posdir, posdir)){
-	draw_list.erase(draw_list.begin()+i);
+	create_list.erase(create_list.begin()+i);
 	break;
     }
     i++;
@@ -103,11 +182,19 @@ void GameAssetManager::removeBlock(glm::vec3 posdir){
 /**
  * Draws each GameAsset in the scene graph.
  */
-void GameAssetManager::Draw() {
+void GameAssetManager::Draw(glm::vec3 pos) {
 
-  for(auto ga: draw_list) {
+  for(int i = 0; i < 3; i++){
+  for(int ii = 0; ii < 3; ii++){
+  for(auto ga: draw_list[i][ii]) {
   //just checking collision passes back properly before tackling the maths!
-    ga->Draw(program_token);
+     ga->Draw(program_token);
+    }
+  }
+ }
+
+  for(auto ga: create_list){
+	ga->Draw(program_token);
   }
 
 }

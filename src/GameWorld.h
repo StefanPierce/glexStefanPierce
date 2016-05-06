@@ -48,8 +48,10 @@ class GameWorld {
   std::shared_ptr<CubeAsset> cube;
   bool checkPlayerCollisions();
   int count;
-  int asset_position[25][25][25];
+  int playerx;
+  int playerz;
   void addCube(GLfloat, GLfloat, GLfloat);
+  void checkChunk();
   
 };
 #endif // GAMEWORLD_H

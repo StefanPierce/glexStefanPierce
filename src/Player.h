@@ -44,7 +44,7 @@ class Player {
   GLfloat width = 1.0;
   glm::vec3 min;
   glm::vec3 max;
-  glm::vec3 position = glm::vec3(1,1,1);
+  glm::vec3 position = glm::vec3(10,1,10);
   glm::vec3 mdirection;
   glm::vec3 direction;
   glm::vec3 vright;

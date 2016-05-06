@@ -45,7 +45,6 @@ void Update(const std::shared_ptr<GameWorld> game_world){
  int x, y;
  SDL_GetRelativeMouseState(&x, &y); 
  game_world->setCamera(x/1000.0, y/1000.0);
-
  if(keystates[SDL_SCANCODE_W]){
    game_world->moveF();
  }
@@ -71,6 +70,8 @@ void Update(const std::shared_ptr<GameWorld> game_world){
  if(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_RIGHT)){
    game_world->removeBlock();
 }
+
+  game_world->moveD();
 
 }
 	
@@ -140,9 +141,10 @@ std::shared_ptr<SDL_Window> InitWorld() {
   }
 
   // OpenGL settings
-  glDisable(GL_CULL_FACE);
+  glEnable(GL_CULL_FACE);
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LESS);
+  glCullFace(GL_BACK);
 
   window.reset(_window, SDL_DestroyWindow);
   return window;

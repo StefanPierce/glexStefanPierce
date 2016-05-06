@@ -19,14 +19,14 @@ CubeAsset::CubeAsset(GLfloat x, GLfloat y, GLfloat z) {
   };
 
   GLfloat color_buffer[]		 = {
-    1.0f,  0.0f,  0.0f,
-    0.0f,  0.0f,  1.0f,
-    0.0f,  1.0f,  0.0f,
-    1.0f,  1.0f,  0.0f,
-    0.0f,  1.0f,  1.0f,
-    0.2f,  0.1f,  0.1f,
-    0.0f,  0.1f,  0.1f,
-    0.1f,  0.0f,  0.1f,
+    x/50, y/50, z/50,
+    x/50, y/50, z/50,
+    x/50, y/50, z/50,
+    x/50, y/50, z/50,
+    x/50, y/50, z/50,
+    x/50, y/50, z/50,
+    x/50, y/50, z/50,
+    x/50, y/50, z/50
   };
 
   element_buffer_length = 36;

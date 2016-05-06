@@ -6,7 +6,8 @@ Player::Player(GLuint program_token){
   pro_loc = glGetUniformLocation(program_token, "Projection");
   view_loc = glGetUniformLocation(program_token, "View");
 
-
+   min = position - glm::vec3(0.3,height,0.3);
+   max = position + glm::vec3(0.3,0.5,0.3);
 }
 
 bool Player::collision(GameAsset &a){
