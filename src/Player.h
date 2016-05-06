@@ -25,13 +25,17 @@ class Player {
   void moveB();
   void moveL();
   void moveR();
+  void moveU();
+  void moveD();
+  void increaseDist();
+  void decreaseDist();
   void setCamera(GLfloat, GLfloat);
   bool collision(GameAsset &a);
   glm::vec3 getMin();
   glm::vec3 getMax();
   glm::vec3 getPosDir();
  private:
-
+  GLfloat blockDistance = 3.0;
   GLfloat speed = 0.1;
   void updateMinMax();
   GLfloat cameraX = 1.0;

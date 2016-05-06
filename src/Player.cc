@@ -15,6 +15,15 @@ bool Player::collision(GameAsset &a){
   return false;
 }
 
+void Player::moveU(){
+  position+=glm::vec3(0, 0.1, 0);
+  updateMinMax();
+}
+
+void Player::moveD(){
+    position-=glm::vec3(0, 0.1, 0);
+  updateMinMax();
+}
 //basic move functions
 void Player::moveF(){
   position+=mdirection*speed;
@@ -50,7 +59,18 @@ glm::vec3 Player::getMax(){
 }
 
 glm::vec3 Player::getPosDir(){
- return (position + direction * glm::vec3(3,3,3));
+ return (position + direction * glm::vec3(blockDistance,blockDistance,blockDistance));
+}
+
+void Player::increaseDist(){
+ blockDistance += 0.5;
+}
+ 
+void Player::decreaseDist(){
+ blockDistance -= 0.5;
+ if(blockDistance < 2){
+ 	blockDistance = 2;
+ }
 }
 
 void Player::setCamera(GLfloat x, GLfloat y){

@@ -15,7 +15,8 @@
 #include "GameWorld.h"
 
 const Uint8* keystates;
-
+bool wheelup=false;
+bool wheeldown = false;
 
 /*
  * SDL timers run in separate threads.  In the timer thread
@@ -57,6 +58,12 @@ void Update(const std::shared_ptr<GameWorld> game_world){
  if(keystates[SDL_SCANCODE_D]){
    game_world->moveR();
  }
+ if(keystates[SDL_SCANCODE_SPACE]){
+   game_world->moveU();
+ }
+ if(keystates[SDL_SCANCODE_ESCAPE]){
+  SDL_Quit();
+ }
 
  if(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)){ 
    game_world->addBlock();
@@ -64,7 +71,9 @@ void Update(const std::shared_ptr<GameWorld> game_world){
  if(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_RIGHT)){
    game_world->removeBlock();
 }
-}	
+
+}
+	
 
 void Draw(const std::shared_ptr<SDL_Window> window, const std::shared_ptr<GameWorld> game_world) {
 
@@ -79,8 +88,8 @@ void Draw(const std::shared_ptr<SDL_Window> window, const std::shared_ptr<GameWo
 }
 
 std::shared_ptr<SDL_Window> InitWorld() {
-  Uint32 width = 640;
-  Uint32 height = 480;
+  Uint32 width = 800;
+  Uint32 height = 600;
   SDL_Window * _window;
   std::shared_ptr<SDL_Window> window;
 
@@ -198,9 +207,16 @@ int main(int argc, char ** argv) {
     case SDL_QUIT:
       SDL_Quit();
       break;
+    case SDL_MOUSEWHEEL:
+      if(event.wheel.y < 0){
+	game_world->decreaseDist();
+      }else{
+	game_world->increaseDist();
+      }
+     break;
     case SDL_USEREVENT:
-      Update(game_world);
       Draw(window, game_world);
+      Update(game_world);
       break;
     default:
       break;

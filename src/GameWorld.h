@@ -31,10 +31,13 @@ class GameWorld {
   void moveB();
   void moveL();
   void moveR();
+  void moveU();
+  void moveD();
   void setCamera(GLfloat, GLfloat);
   void addBlock();
   void removeBlock();
-
+  void increaseDist();
+  void decreaseDist();
   /**
    * Calling Draw() will draw the entire world.
    */

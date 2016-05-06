@@ -37,6 +37,29 @@ bool GameWorld::checkPlayerCollisions(){
  	return false;
 }
 
+void GameWorld::increaseDist(){
+player->increaseDist();
+
+}
+
+void GameWorld::decreaseDist(){
+player->decreaseDist();
+}
+
+void GameWorld::moveU(){
+player->moveU();
+player->moveU();
+if(checkPlayerCollisions()){
+player->moveD();
+}
+}
+
+void GameWorld::moveD(){
+player->moveD();
+if(checkPlayerCollisions()){
+player->moveU();
+}
+}
 
 //basic move functions
 void GameWorld::moveF(){
@@ -69,25 +92,26 @@ player->moveL();
 
 void GameWorld::addBlock(){
  glm::vec3 temp = player->getPosDir();
- addCube((int)temp.x, (int)temp.y, (int)temp.z );
+ addCube((int)(temp.x + 0.5), (int)(temp.y + 0.5), (int)(temp.z  + 0.5));
  
  
 }
 
 void GameWorld::removeBlock(){
   glm::vec3 temp = player->getPosDir();
- asset_manager->removeBlock(glm::vec3((int)temp.x, (int)temp.y, (int)temp.z));
+ asset_manager->removeBlock(glm::vec3((int)(temp.x + 0.5), (int)(temp.y + 0.5), (int)(temp.z + 0.5)));
 
 }
 
 void GameWorld::setCamera(GLfloat x, GLfloat y){
   player->setCamera(x,y);
   glm::vec3 temp = player->getPosDir();
-  cube->ChangePos((int)temp.x, (int)temp.y, (int)temp.z);
+  cube->ChangePos((int)(temp.x + 0.5), (int)(temp.y + 0.5), (int)(temp.z + 0.5));
 
 }
 
 void GameWorld::Draw() {
+  moveD();
   player->Draw();
   glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
   cube->Draw(asset_manager->return_token());
