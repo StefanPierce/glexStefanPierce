@@ -31,6 +31,7 @@ class GameAssetManager {
   void AddAsset(glm::vec3);
   void Draw();
   void removeBlock(glm::vec3);
+  void ChangeCubePos(int,int,int);
   GLuint return_token();
   bool checkPlayerCollisions(glm::vec3, glm::vec3);
   bool collisions(glm::vec3, glm::vec3, glm::vec3, glm::vec3);
@@ -39,12 +40,13 @@ class GameAssetManager {
   GLuint CreateGLESShader(GLenum, std::string &);
   // As this is private and we're writing to the GPU, we will use raw pointers.
   std::pair<GLchar *, GLint>  ReadShader(std::string &);
-
+    std::shared_ptr<CubeAsset> cube;
   // The internal scene graph is a simple list.
   std::vector<std::shared_ptr<GameAsset>> draw_list;
   std::shared_ptr<GameAsset> Cubes;
   std::vector<glm::vec3> CubePositions;
   GLuint program_token;
+  glm::vec3 playerCubePos;
 };
 
 #endif // GAMEASSETMANAGER_H

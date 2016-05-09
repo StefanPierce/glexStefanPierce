@@ -7,7 +7,7 @@
 GameAssetManager::GameAssetManager(ApplicationMode mode) {
   std::string vertex_shader("shaders/translate.vs");
   std::string fragment_shader("shaders/fragment.fs");
-  
+  cube = std::make_shared<CubeAsset>(0,0,0);
   Cubes = std::make_shared<CubeAsset>(0,0,0);
 
   switch(mode) {
@@ -23,6 +23,11 @@ GameAssetManager::GameAssetManager(ApplicationMode mode) {
   };
 
   program_token = CreateGLProgram(vertex_shader, fragment_shader);
+}
+
+void GameAssetManager::ChangeCubePos(int x, int y, int z){
+  playerCubePos = glm::vec3(x,y,z);
+
 }
 
 bool GameAssetManager::checkPlayerCollisions(glm::vec3 min, glm::vec3 max){
@@ -121,6 +126,7 @@ void GameAssetManager::removeBlock(glm::vec3 posdir){
  * Draws each GameAsset in the scene graph.
  */
 void GameAssetManager::Draw() {
+
   /*
   for(auto ga: draw_list) {
   //just checking collision passes back properly before tackling the maths!
@@ -134,6 +140,11 @@ void GameAssetManager::Draw() {
   glUniformMatrix4fv(anim_loc, 1, GL_FALSE, &anim[0][0]);
   Cubes->Draw(program_token); 
   }
+  glm::mat4 anim = glm::translate(playerCubePos);
+   glUniformMatrix4fv(anim_loc, 1, GL_FALSE, &anim[0][0]);
+   glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+  cube->Draw(program_token);
+  glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 
 }
 
