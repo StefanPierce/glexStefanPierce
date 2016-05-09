@@ -28,6 +28,7 @@ class CubeAsset : public GameAsset {
 
 
 
+
 };
 
 #endif // CUBEASSET_H

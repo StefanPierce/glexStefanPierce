@@ -7,14 +7,14 @@ CubeAsset::CubeAsset(GLfloat x, GLfloat y, GLfloat z) {
   tZ = z;
 
   GLfloat vertex_buffer [] {
-     -0.5f + x, -0.5f + y, -0.5f + z
-    ,-0.5f + x,  0.5f + y, -0.5f + z
-    , 0.5f + x, -0.5f + y, -0.5f + z
-    , 0.5f + x,  0.5f + y, -0.5f + z
-    , 0.5f + x, -0.5f + y,  0.5f + z	
-    , 0.5f + x,  0.5f + y,  0.5f + z
-    ,-0.5f + x, -0.5f + y,  0.5f + z
-    ,-0.5f + x,  0.5f + y,  0.5f + z
+     -0.5f, -0.5f, -0.5f
+    ,-0.5f,  0.5f, -0.5f
+    , 0.5f, -0.5f, -0.5f
+    , 0.5f,  0.5f, -0.5f
+    , 0.5f, -0.5f,  0.5f	
+    , 0.5f,  0.5f,  0.5f
+    ,-0.5f, -0.5f,  0.5f
+    ,-0.5f,  0.5f,  0.5f
     
   };
 
@@ -86,7 +86,10 @@ void checkError(std::string file, int line) {
 }
 
 void CubeAsset::ChangePos(GLfloat x, GLfloat y, GLfloat z){
- 	anim = glm::translate(glm::vec3(tX+x,tY+y,tZ+z));
+
+   tX=x;
+   tY=y;
+   tZ=z;
 }
 
 void CubeAsset::Draw(GLuint program_token) {
@@ -114,7 +117,7 @@ void CubeAsset::Draw(GLuint program_token) {
 
   GLuint position_attrib = glGetAttribLocation(program_token, "position");
   GLuint color_attrib = glGetAttribLocation(program_token, "color");
-  GLuint anim_loc = glGetUniformLocation(program_token, "anim");
+
   checkGLError();
 
   glUseProgram(program_token);
@@ -134,8 +137,7 @@ void CubeAsset::Draw(GLuint program_token) {
 
   );*/
 
-
-  glUniformMatrix4fv(anim_loc, 1, GL_FALSE, &anim[0][0]);
+  
 
  
   

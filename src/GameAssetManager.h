@@ -12,6 +12,7 @@
 
 #include "common.h"
 #include "GameAsset.h"
+#include "CubeAsset.h"
 
 /**
  * GameAssetManager is a container for GameAssets.  It also provides utility
@@ -27,11 +28,12 @@ class GameAssetManager {
   void operator=(GameAssetManager const&); // assignment
   void AddAsset(std::shared_ptr<GameAsset>);
   void AddAsset(std::shared_ptr<GameAsset>, glm::vec3, glm::vec3);
+  void AddAsset(glm::vec3);
   void Draw();
   void removeBlock(glm::vec3);
   GLuint return_token();
   bool checkPlayerCollisions(glm::vec3, glm::vec3);
-
+  
  private:
   GLuint CreateGLProgram(std::string &, std::string &);
   GLuint CreateGLESShader(GLenum, std::string &);
@@ -40,6 +42,8 @@ class GameAssetManager {
 
   // The internal scene graph is a simple list.
   std::vector<std::shared_ptr<GameAsset>> draw_list;
+  std::shared_ptr<GameAsset> Cubes;
+  std::vector<glm::vec3> CubePositions;
   GLuint program_token;
 };
 

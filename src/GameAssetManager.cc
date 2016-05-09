@@ -8,6 +8,8 @@ GameAssetManager::GameAssetManager(ApplicationMode mode) {
   std::string vertex_shader("shaders/translate.vs");
   std::string fragment_shader("shaders/fragment.fs");
   
+  Cubes = std::make_shared<CubeAsset>(0,0,0);
+
   switch(mode) {
   case ROTATE:
     vertex_shader = "shaders/rotate.vs";
@@ -72,6 +74,12 @@ void GameAssetManager::operator=(GameAssetManager const& the_manager) {
 /**
  * Adds a GameAsset to the scene graph.
  */
+
+void GameAssetManager::AddAsset(glm::vec3 position){
+
+  CubePositions.push_back(position);
+
+}
 void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
   for(auto ga: draw_list){
      if (ga->collision(*the_asset)){
@@ -104,10 +112,18 @@ void GameAssetManager::removeBlock(glm::vec3 posdir){
  * Draws each GameAsset in the scene graph.
  */
 void GameAssetManager::Draw() {
-
+  /*
   for(auto ga: draw_list) {
   //just checking collision passes back properly before tackling the maths!
     ga->Draw(program_token);
+  }*/
+  GLuint anim_loc = glGetUniformLocation(program_token, "anim");
+
+
+  for(auto cubes: CubePositions){
+  glm::mat4 anim = glm::translate(cubes);
+  glUniformMatrix4fv(anim_loc, 1, GL_FALSE, &anim[0][0]);
+  Cubes->Draw(program_token); 
   }
 
 }

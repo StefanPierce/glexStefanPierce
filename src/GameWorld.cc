@@ -6,8 +6,8 @@ GameWorld::GameWorld (ApplicationMode mode) {
   
 
   //generate 20x20 grid
-  for(int i = 0; i < 25; i++){
-     for(int ii = 0; ii<25; ii++){
+  for(int i = 0; i < 50; i++){
+     for(int ii = 0; ii<50; ii++){
 	addCube(0.0 + i, -1.0, 0.0+ii);
   }
   }
@@ -21,12 +21,15 @@ GameWorld::GameWorld (ApplicationMode mode) {
 }
 
 void GameWorld::addCube(GLfloat x, GLfloat y, GLfloat z){
-       
+       glm::vec3 temp = glm::vec3(x,y,z);
+
         if(player!= nullptr){
-	  asset_manager->AddAsset(std::make_shared<CubeAsset>(0.0 + x, 0.0 + y, 0.0+z), player->getMin(), player->getMax());
+	  asset_manager->AddAsset(temp);
 	}else{
-	  asset_manager->AddAsset(std::make_shared<CubeAsset>(0.0 + x, 0.0 + y, 0.0+z));
+	  asset_manager->AddAsset(temp);
 	}
+
+       
 }
 
 bool GameWorld::checkPlayerCollisions(){
@@ -47,18 +50,18 @@ player->decreaseDist();
 }
 
 void GameWorld::moveU(){
-player->moveU();
-player->moveU();
-if(checkPlayerCollisions()){
-player->moveD();
-}
+//player->moveU();
+//player->moveU();
+//if(checkPlayerCollisions()){
+//player->moveD();
+//}
 }
 
 void GameWorld::moveD(){
-player->moveD();
-if(checkPlayerCollisions()){
-player->moveU();
-}
+//player->moveD();
+//if(checkPlayerCollisions()){
+//player->moveU();
+//}
 }
 
 //basic move functions
