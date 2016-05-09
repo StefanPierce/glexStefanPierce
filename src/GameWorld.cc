@@ -6,8 +6,8 @@ GameWorld::GameWorld (ApplicationMode mode) {
   
 
   //generate 20x20 grid
-  for(int i = 0; i < 25; i++){
-     for(int ii = 0; ii<25; ii++){
+  for(int i = 0; i < 50; i++){
+     for(int ii = 0; ii<50; ii++){
 	addCube(0.0 + i, -1.0, 0.0+ii);
   }
   }
