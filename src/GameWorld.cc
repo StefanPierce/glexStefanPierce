@@ -8,7 +8,11 @@ GameWorld::GameWorld (ApplicationMode mode) {
   //generate 20x20 grid
   for(int i = 0; i < 50; i++){
      for(int ii = 0; ii<50; ii++){
+<<<<<<< HEAD
 	addCube(0.0 + i, -1.0 + heightMap[i][ii], 0.0+ii);
+=======
+	addCube(0.0 + i, -1.0, 0.0+ii);
+>>>>>>> master
   }
   }
 
