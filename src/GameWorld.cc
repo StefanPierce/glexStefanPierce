@@ -50,18 +50,18 @@ player->decreaseDist();
 }
 
 void GameWorld::moveU(){
-//player->moveU();
-//player->moveU();
-//if(checkPlayerCollisions()){
-//player->moveD();
-//}
+player->moveU();
+player->moveU();
+if(checkPlayerCollisions()){
+player->moveD();
+}
 }
 
 void GameWorld::moveD(){
-//player->moveD();
-//if(checkPlayerCollisions()){
-//player->moveU();
-//}
+player->moveD();
+if(checkPlayerCollisions()){
+player->moveU();
+}
 }
 
 //basic move functions

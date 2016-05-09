@@ -33,7 +33,7 @@ class GameAssetManager {
   void removeBlock(glm::vec3);
   GLuint return_token();
   bool checkPlayerCollisions(glm::vec3, glm::vec3);
-  
+  bool collisions(glm::vec3, glm::vec3, glm::vec3, glm::vec3);
  private:
   GLuint CreateGLProgram(std::string &, std::string &);
   GLuint CreateGLESShader(GLenum, std::string &);

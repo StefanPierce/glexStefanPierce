@@ -25,14 +25,19 @@ GameAssetManager::GameAssetManager(ApplicationMode mode) {
   program_token = CreateGLProgram(vertex_shader, fragment_shader);
 }
 
-bool GameAssetManager::checkPlayerCollisions(glm::vec3 pmin, glm::vec3 pmax){
-	for(auto ga: draw_list) {
-          if(ga->collision(pmin, pmax)){
-		return true;
-	  }
-        }
+bool GameAssetManager::checkPlayerCollisions(glm::vec3 min, glm::vec3 max){
 
-	return false;
+ for(auto cp: CubePositions){
+    glm::vec3 min1 = cp - glm::vec3(0.5,0.5,0.5);
+    glm::vec3 max1 = cp + glm::vec3(0.5,0.5,0.5);
+    if(max.x > min1.x && min.x < max1.x &&
+     max.y > min1.y && min.y < max1.y &&
+     max.z > min1.z && min.z < max1.z){
+    return true;
+     }
+  }
+
+  return false;
 }
 
 GLuint GameAssetManager::return_token(){
@@ -80,28 +85,29 @@ void GameAssetManager::AddAsset(glm::vec3 position){
   CubePositions.push_back(position);
 
 }
-void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
-  for(auto ga: draw_list){
-     if (ga->collision(*the_asset)){
-     return;
-   }
-  }
-  draw_list.push_back(the_asset);
-}
 
-void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset, glm::vec3 min, glm::vec3 max) {
-  if(the_asset->collision(min, max)==false){
-  AddAsset(the_asset);
+bool GameAssetManager::collisions(glm::vec3 min, glm::vec3 max, glm::vec3 min1, glm::vec3 max1){
+  if(max.x > min1.x && min.x < max1.x &&
+     max.y > min1.y && min.y < max1.y &&
+     max.z > min1.z && min.z < max1.z){
+    return true;
   }
+
+  return false;
+
 }
 
 void GameAssetManager::removeBlock(glm::vec3 posdir){
 
   int i = 0;
 
-  for(auto ga: draw_list){
-    if(ga->collision(posdir, posdir)){
-	draw_list.erase(draw_list.begin()+i);
+  for(auto cp: CubePositions){
+   
+    glm::vec3 min1 = cp - glm::vec3(0.5,0.5,0.5);
+    glm::vec3 max1 = cp + glm::vec3(0.5,0.5,0.5);
+
+    if(collisions(posdir, posdir, min1, max1)){
+	CubePositions.erase(CubePositions.begin()+i);
 	break;
     }
     i++;
