@@ -28,6 +28,9 @@ GameAssetManager::GameAssetManager(ApplicationMode mode) {
 bool GameAssetManager::checkPlayerCollisions(glm::vec3 min, glm::vec3 max){
 
  for(auto cp: CubePositions){
+ 
+
+     
     glm::vec3 min1 = cp - glm::vec3(0.5,0.5,0.5);
     glm::vec3 max1 = cp + glm::vec3(0.5,0.5,0.5);
     if(max.x > min1.x && min.x < max1.x &&

@@ -38,6 +38,7 @@ class GameWorld {
   void removeBlock();
   void increaseDist();
   void decreaseDist();
+  void genHeightMap();
   /**
    * Calling Draw() will draw the entire world.
    */
@@ -48,7 +49,7 @@ class GameWorld {
   std::shared_ptr<CubeAsset> cube;
   bool checkPlayerCollisions();
   int count;
-  int asset_position[25][25][25];
+  int heightMap[50][50];
   void addCube(GLfloat, GLfloat, GLfloat);
   
 };

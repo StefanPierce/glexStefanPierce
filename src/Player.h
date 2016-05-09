@@ -40,7 +40,7 @@ class Player {
   void updateMinMax();
   GLfloat cameraX = 1.0;
   GLfloat cameraY = 1.0;
-  GLfloat height = 1.0;
+  GLfloat height = 2.0;
   GLfloat width = 1.0;
   glm::vec3 min;
   glm::vec3 max;
