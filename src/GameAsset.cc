@@ -9,13 +9,14 @@ void GameAsset::genMinMax(GLfloat x, GLfloat y, GLfloat z){
  max = glm::vec3(x + 0.5, y + 0.5, z + 0.5);
  pos = glm::vec3(x, y, z);
 }
-bool GameAsset::closeToDraw(glm::vec3 pos1){
+
+/*bool GameAsset::closeToDraw(glm::vec3 pos1){
   if(pos.x > pos1.x - 20 && pos.x < pos1.x + 20
      && pos.z > pos1.z - 20 && pos.z < pos1.z + 20){
    return true;
   }
   return false;
-}
+}*/
 glm::vec3 GameAsset::getAssetPos(){
  return pos;
 }

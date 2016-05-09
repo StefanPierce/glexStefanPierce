@@ -11,7 +11,7 @@ class GameAsset {
  public:
   GameAsset();
   virtual void Draw(GLuint) = 0;
-  bool closeToDraw(glm::vec3);
+
   bool collision(glm::vec3 min1, glm::vec3 max1);
   bool collision(GameAsset &a);
   bool closeToDraw(glm::vec3);
