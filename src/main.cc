@@ -88,8 +88,8 @@ void Draw(const std::shared_ptr<SDL_Window> window, const std::shared_ptr<GameWo
 }
 
 std::shared_ptr<SDL_Window> InitWorld() {
-  Uint32 width = 800;
-  Uint32 height = 600;
+  Uint32 width = 640;
+  Uint32 height = 480;
   SDL_Window * _window;
   std::shared_ptr<SDL_Window> window;
 

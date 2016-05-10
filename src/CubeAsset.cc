@@ -64,7 +64,6 @@ CubeAsset::CubeAsset(GLfloat x, GLfloat y, GLfloat z) {
  glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
  glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 24, color_buffer, GL_STATIC_DRAW);
 
- genMinMax(tX, tY, tZ);
 }
 
 CubeAsset::~CubeAsset() {

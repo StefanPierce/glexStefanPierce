@@ -11,15 +11,8 @@ GameWorld::GameWorld (ApplicationMode mode) {
 
 	addCube(0.0 + i, -1.0 + heightMap[i][ii], 0.0+ii);
 
-	addCube(0.0 + i, -1.0, 0.0+ii);
-
   }
   }
-
-
-	for(int i = 0; i < 10; i++){
-		addCube(5.0 + i, 0.0 + i, 0.0 + 1);
-	}
 
   player = std::make_shared<Player>(asset_manager->return_token());
 
@@ -74,11 +67,15 @@ bool GameWorld::checkPlayerCollisions(){
 
 void GameWorld::increaseDist(){
 player->increaseDist();
+  glm::vec3 temp = player->getPosDir();
+  asset_manager->ChangeCubePos((int)(temp.x + 0.5), (int)(temp.y + 0.5), (int)(temp.z + 0.5));
 
 }
 
 void GameWorld::decreaseDist(){
 player->decreaseDist();
+  glm::vec3 temp = player->getPosDir();
+  asset_manager->ChangeCubePos((int)(temp.x + 0.5), (int)(temp.y + 0.5), (int)(temp.z + 0.5));
 }
 
 void GameWorld::moveU(){

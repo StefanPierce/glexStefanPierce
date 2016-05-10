@@ -89,9 +89,11 @@ void GameAssetManager::operator=(GameAssetManager const& the_manager) {
  */
 
 void GameAssetManager::AddAsset(glm::vec3 position){
-
+  glm::vec3 min = position - glm::vec3(0.5,0.5,0.5);
+  glm::vec3 max = position + glm::vec3(0.5,0.5,0.5);
+  if(!checkPlayerCollisions(min, max)){
   CubePositions.push_back(position);
-
+  }
 }
 
 bool GameAssetManager::collisions(glm::vec3 min, glm::vec3 max, glm::vec3 min1, glm::vec3 max1){
@@ -134,8 +136,9 @@ void GameAssetManager::Draw() {
   }*/
   GLuint anim_loc = glGetUniformLocation(program_token, "anim");
 
-
+int i = 0;
   for(auto cubes: CubePositions){
+  i++;
   glm::mat4 anim = glm::translate(cubes);
   glUniformMatrix4fv(anim_loc, 1, GL_FALSE, &anim[0][0]);
   Cubes->Draw(program_token); 
@@ -145,7 +148,7 @@ void GameAssetManager::Draw() {
    glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
   cube->Draw(program_token);
   glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
-
+std::cout<<i<<std::endl;
 }
 
 /**

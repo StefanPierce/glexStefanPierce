@@ -48,7 +48,7 @@ class GameWorld {
   std::shared_ptr<Player> player;
   bool checkPlayerCollisions();
   int count;
-  int heightMap[50][50];
+  int heightMap[100][100];
   void addCube(GLfloat, GLfloat, GLfloat);
   
 };
