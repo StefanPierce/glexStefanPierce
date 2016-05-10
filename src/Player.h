@@ -30,7 +30,6 @@ class Player {
   void increaseDist();
   void decreaseDist();
   void setCamera(GLfloat, GLfloat);
-  bool collision(GameAsset &a);
   glm::vec3 getMin();
   glm::vec3 getMax();
   glm::vec3 getPosDir();

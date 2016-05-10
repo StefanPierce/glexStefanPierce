@@ -40,7 +40,7 @@ struct SDLWindowDeleter {
   }
 };
 
-void Update(const std::shared_ptr<GameWorld> game_world){
+void Update(const std::shared_ptr<GameWorld> & game_world){
 
  int x, y;
  SDL_GetRelativeMouseState(&x, &y); 
@@ -75,7 +75,7 @@ void Update(const std::shared_ptr<GameWorld> game_world){
 }
 	
 
-void Draw(const std::shared_ptr<SDL_Window> window, const std::shared_ptr<GameWorld> game_world) {
+void Draw(const std::shared_ptr<SDL_Window> &window, const std::shared_ptr<GameWorld> &game_world) {
 
   
   glClearColor(0.4f, 0.4f, 0.7f, 1.0f);

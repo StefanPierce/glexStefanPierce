@@ -84,13 +84,6 @@ void checkError(std::string file, int line) {
   }
 }
 
-void CubeAsset::ChangePos(GLfloat x, GLfloat y, GLfloat z){
-
-   tX=x;
-   tY=y;
-   tZ=z;
-}
-
 void CubeAsset::Draw(GLuint program_token) {
   if(!glIsProgram(program_token)) {
     std::cerr << "Drawing Cube with invalid program" << std::endl;

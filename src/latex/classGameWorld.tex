@@ -1,0 +1,78 @@
+\hypertarget{classGameWorld}{}\section{Game\+World Class Reference}
+\label{classGameWorld}\index{Game\+World@{Game\+World}}
+
+
+{\ttfamily \#include $<$Game\+World.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGameWorld_a17a84e57a80600961088afc753036f89}{Game\+World} (Application\+Mode)
+\item 
+void {\bfseries moveF} ()\hypertarget{classGameWorld_a4e3d5cbb6241c8db5d7e74af509a02c1}{}\label{classGameWorld_a4e3d5cbb6241c8db5d7e74af509a02c1}
+
+\item 
+void {\bfseries moveB} ()\hypertarget{classGameWorld_a1c5c6bd707c87d80573e558ab8ce018a}{}\label{classGameWorld_a1c5c6bd707c87d80573e558ab8ce018a}
+
+\item 
+void {\bfseries moveL} ()\hypertarget{classGameWorld_af1728ec61cd2016030821261c8f79c34}{}\label{classGameWorld_af1728ec61cd2016030821261c8f79c34}
+
+\item 
+void {\bfseries moveR} ()\hypertarget{classGameWorld_ab59dfdd281fac21eb6f2680711188598}{}\label{classGameWorld_ab59dfdd281fac21eb6f2680711188598}
+
+\item 
+void {\bfseries moveU} ()\hypertarget{classGameWorld_a219d46bb16bfb526bcf9b6957515d063}{}\label{classGameWorld_a219d46bb16bfb526bcf9b6957515d063}
+
+\item 
+void {\bfseries moveD} ()\hypertarget{classGameWorld_a32b9c8230ef13f29e03f38b43e015ad9}{}\label{classGameWorld_a32b9c8230ef13f29e03f38b43e015ad9}
+
+\item 
+void {\bfseries set\+Camera} (G\+Lfloat, G\+Lfloat)\hypertarget{classGameWorld_a71f6a1467ce47501dbcafd5a2cbfb1a2}{}\label{classGameWorld_a71f6a1467ce47501dbcafd5a2cbfb1a2}
+
+\item 
+void {\bfseries add\+Block} ()\hypertarget{classGameWorld_af5b68a2455b69878be6f0180837d9ce0}{}\label{classGameWorld_af5b68a2455b69878be6f0180837d9ce0}
+
+\item 
+void {\bfseries remove\+Block} ()\hypertarget{classGameWorld_a6cef2d8225c0695d0fc76715b24cfd5a}{}\label{classGameWorld_a6cef2d8225c0695d0fc76715b24cfd5a}
+
+\item 
+void {\bfseries increase\+Dist} ()\hypertarget{classGameWorld_a5757de41eaf3422b49301142de241012}{}\label{classGameWorld_a5757de41eaf3422b49301142de241012}
+
+\item 
+void {\bfseries decrease\+Dist} ()\hypertarget{classGameWorld_abab5bf098dfed3fb06f99f06b8dac775}{}\label{classGameWorld_abab5bf098dfed3fb06f99f06b8dac775}
+
+\item 
+void {\bfseries gen\+Height\+Map} ()\hypertarget{classGameWorld_a460cc4192d3e6ebb8631516c03d0dac0}{}\label{classGameWorld_a460cc4192d3e6ebb8631516c03d0dac0}
+
+\item 
+void \hyperlink{classGameWorld_a275418607d8286979b276f165ad5876b}{Draw} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classGameWorld}{Game\+World} allows us to separate the management of the game world from the nuts and bolts of game loop initialisation. The \hyperlink{classGameWorld}{Game\+World} currently has a very simplified scene graph consisiting of a single \hyperlink{classGameAssetManager}{Game\+Asset\+Manager}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Game\+World@{Game\+World}!Game\+World@{Game\+World}}
+\index{Game\+World@{Game\+World}!Game\+World@{Game\+World}}
+\subsubsection[{\texorpdfstring{Game\+World(\+Application\+Mode)}{GameWorld(ApplicationMode)}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+World\+::\+Game\+World (
+\begin{DoxyParamCaption}
+\item[{Application\+Mode}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{classGameWorld_a17a84e57a80600961088afc753036f89}{}\label{classGameWorld_a17a84e57a80600961088afc753036f89}
+We thread the Application\+Mode through the \hyperlink{classGameWorld}{Game\+World} ss we want to read it in from the user. Threading the state through the various function calls is preferable (in this case) to having some kind of global state. 
+
+\subsection{Member Function Documentation}
+\index{Game\+World@{Game\+World}!Draw@{Draw}}
+\index{Draw@{Draw}!Game\+World@{Game\+World}}
+\subsubsection[{\texorpdfstring{Draw()}{Draw()}}]{\setlength{\rightskip}{0pt plus 5cm}void Game\+World\+::\+Draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classGameWorld_a275418607d8286979b276f165ad5876b}{}\label{classGameWorld_a275418607d8286979b276f165ad5876b}
+Calling \hyperlink{classGameWorld_a275418607d8286979b276f165ad5876b}{Draw()} will draw the entire world. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game\+World.\+h\item 
+Game\+World.\+cc\end{DoxyCompactItemize}

@@ -9,12 +9,6 @@ Player::Player(GLuint program_token){
 
 }
 
-bool Player::collision(GameAsset &a){
-
-  
-  return false;
-}
-
 void Player::moveU(){
   position+=glm::vec3(0, 0.1, 0);
   updateMinMax();
